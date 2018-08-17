@@ -1,0 +1,161 @@
+.nav {
+  display: none;
+}
+
+
+.content {
+  height: 100%;
+  display: grid;
+  grid-template-columns: 3fr 9fr .3fr 2fr 2fr 2fr 3fr;
+  grid-template-rows: 10vh 5vh auto auto auto 80vh;
+  grid-gap: 1rem;
+  grid-template-areas:
+      "ph1 ph1       ph1  ph1  ph1          ph1          ph1"
+      "ph2 roomtitle ph9  ph9  ph4          ph4          ph4"
+      "ph2 player    phm  chat chat         chat         ph3"
+      "ph5 temp      temp temp temp         temp         ph3"
+      "ph6 buttons   ph7  ph7  onlineusers  onlineusers  ph10"
+      "ph8 ph8       ph8  ph8  ph8          ph8          ph8"
+    ;
+}
+
+.item {
+  width: 100%;
+  height: 100%;
+  /* background-color: #ff0076; */
+}
+
+.outline {
+  outline-width: .4vw;
+  outline-style: solid;
+}
+
+.box-title {
+  margin: 0;
+  padding: .2em 0;
+  display: block;
+  /* box-sizing: border-box; */
+  width: 100%;
+  background-color: #f0f0f0;
+  color: #2c2c2c;
+}
+
+.roomtitle {
+  grid-area: roomtitle;
+}
+
+.roomtitle > h1 {
+  margin: 0;
+}
+
+.player-container {
+  grid-area: player;
+  position: relative;
+  height: 0;
+  padding: 56.25% 0 0 0;
+  /* max-height: 100%; */
+}
+
+.player-container > .player {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
+  max-height: 100%;
+  background-color: #00a3ff;
+}
+
+.player-container > .player > iframe {
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
+  max-height: 100%;
+  outline-color: #ffffff;
+  transition: .5s;
+}
+
+.chat-container {
+  grid-area: chat;
+  /* height: 100%; */
+  background-color: #f9f9f9;
+  outline-color: #f0f0f0;
+  z-index: 999;
+}
+
+.chat-container > .chat {
+  height: 100%;
+  /* width: 100%; */
+}
+
+.chat-container > .chat > .messages {
+  height: calc(100% - 49.6px - 2.5em);
+  overflow-y: scroll;
+  background-color: #f9f9f9
+}
+
+.chat-container > .chat > .messages > .message {
+  display: block;
+  padding: .6em;
+  margin: .3em;
+  background-color: #ececec;
+}
+
+.chat-container > .chat > .messages > .message > .timestamp {
+  float: right;
+  color: #787878;
+}
+
+.chat-container > .chat > form > input {
+  border: none;
+  background-color: #ececec;
+  width: calc(100% - 1em);
+  height: 2.5em;
+  padding: .2em .5em 0 .5em;
+}
+
+.buttons-container {
+  grid-area: buttons;
+}
+
+.player-url {
+  width: 60%;
+}
+
+.player-url > input {
+  width: 80%;
+}
+
+.onlineusers-container {
+  grid-area: onlineusers;
+  background-color: #f9f9f9;
+  outline-color: #f0f0f0;
+}
+
+.onlineusers {
+  min-height: 10vw;
+  position: relative;
+}
+
+.usercounter {
+  position: absolute;
+  top: 1.2em;
+  right: .5em;
+  color: #4b4b4b;
+}
+
+.user {
+  display: block;
+  background-color: #ececec;
+  padding: .6em;
+  margin: .3em;
+}
+
+.temp {
+  grid-area: temp;
+  height: 2vw;
+  margin: 2vw 0;
+  background-color: #41ff66;
+  outline-color: #40ee62;
+}
