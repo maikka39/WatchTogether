@@ -55,19 +55,19 @@ def join_room(sid, roomnum, username="Unknown"):
     usernames[str(sid)] = escape(str(username))
     sio.enter_room(sid, roomnum)
     room = str(sio.rooms(sid)[0])
-    try:
-        roomusers[room].append(usernames[str(sid)])
-    except KeyError:
+    if type(roomusers.get(room)) == list:
+        roomusers[room].append(usernames.get(str(sid), "Unknown"))
+    else:
         roomusers[room] = []
-        roomusers[room].append(usernames[str(sid)])
-    data = roomusers[room]
+        roomusers[room].append(usernames.get(str(sid), "Unknown"))
+    data = roomusers.get(room)
     sio.emit('get users', data, room=room)
 
 
 @sio.on('send message')
 def send_message(sid, message):
     data = {
-        "user": usernames[str(sid)],
+        "user": usernames.get(str(sid)),
         "msg": escape(message),
         "time": strftime("%H:%M", gmtime()),
     }
@@ -78,7 +78,7 @@ def send_message(sid, message):
 def play_video(sid, data):
     room = str(sio.rooms(sid)[0])
     data = {
-        "state": data["state"],
+        "state": data.get("state", ""),
     }
     sio.emit('play video client', data, room=room)
 
@@ -87,9 +87,9 @@ def play_video(sid, data):
 def sync_video(sid, data):
     room = str(sio.rooms(sid)[0])
     data = {
-        "time": data["time"],
-        "state": data["state"],
-        "videoId": data["videoId"],
+        "time": data.get("time"),
+        "state": data.get("state"),
+        "videoId": data.get("videoId"),
     }
     sio.emit('sync video client', data, room=room)
 
@@ -98,7 +98,7 @@ def sync_video(sid, data):
 def change_video(sid, data):
     room = str(sio.rooms(sid)[0])
     data = {
-        "videoId": data["videoId"],
+        "videoId": data.get("videoId"),
     }
     sio.emit('change video client', data, room=room)
 
@@ -116,14 +116,14 @@ def fname(sid):
 @sio.on('disconnect')
 def disconnect(sid):
     room = str(sio.rooms(sid)[0])
-    roomusers[room].remove(usernames[str(sid)])
-    sio.emit('get users', roomusers[room], room=room)
-    sio.leave_room(sid, room)
-    try:
+    if room in roomusers:
+        roomusers[room].remove(usernames.get(str(sid)))
+    sio.emit('get users', roomusers.get(room), room=room)
+    for uroom in sio.rooms(sid):
+        sio.leave_room(sid, uroom)
+    if str(sid) in usernames:
         del(usernames[str(sid)])
         connections.remove(str(sid))
-    except:
-        pass
     print('disconnect ', sid)
     print('connected sockets: ', len(connections))
 
