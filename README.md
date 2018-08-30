@@ -7,6 +7,7 @@
 WatchTogether is an online service that lets you watch a video together with your friends without being in the same room!
 
 WatchTogether currently only supports Youtube.
+
 [![forthebadge](https://forthebadge.com/images/badges/built-by-developers.svg)](https://forthebadge.com)
 [![forthebadge](https://forthebadge.com/images/badges/made-with-python.svg)](https://forthebadge.com) [![forthebadge](https://forthebadge.com/images/badges/made-with-javascript.svg)](https://forthebadge.com)
 [![forthebadge](https://forthebadge.com/images/badges/uses-html.svg)](https://forthebadge.com) [![forthebadge](https://forthebadge.com/images/badges/uses-css.svg)](https://forthebadge.com)
@@ -28,6 +29,7 @@ How to run this service yourself.
 pip install eventlet
 pip install python-socketio
 pip install flask
+pip install html
 ```
 
 #### Run the Server
