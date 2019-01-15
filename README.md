@@ -17,7 +17,7 @@ WatchTogether currently only supports Youtube.
 [![forthebadge](https://forthebadge.com/images/badges/uses-css.svg)](https://forthebadge.com)
 
 
-[![Open Source Love](https://badges.frapsoft.com/os/v2/open-source.png?v=103)](https://github.com/ellerbrock/open-source-badges/) [![GitHub issues](https://img.shields.io/github/issues/maikka39/WatchTogether.svg "GitHub issues")](https://github.com/maikka39/WatchTogether/issues) [![GitHub stars](https://img.shields.io/github/stars/maikka39/WatchTogether.svg "GitHub stars")](https://github.com/maikka39/WatchTogether/stargazers) [![Github search hit counter](https://img.shields.io/github/search/maikka39/WatchTogether/hit.svg)]()
+[![Open Source Love](https://badges.frapsoft.com/os/v2/open-source.png?v=103)](https://github.com/ellerbrock/open-source-badges/) [![GitHub issues](https://img.shields.io/github/issues/maikka39/WatchTogether.svg "GitHub issues")](https://github.com/maikka39/WatchTogether/issues) [![GitHub stars](https://img.shields.io/github/stars/maikka39/WatchTogether.svg "GitHub stars")](https://github.com/maikka39/WatchTogether/stargazers) [![Github search hit counter](https://img.shields.io/github/search/maikka39/WatchTogether/hit.svg)](#)
 
 ## Dependencies
 
