@@ -20,7 +20,13 @@ $(function() {
   });
 
   socket.on('new message', function(data) {
-    $messages.append('<div class="message"><strong>' + data.user + '</strong>: ' + data.msg + '<span class="timestamp">' + data.time + '</span></div>');
+    let utctime = data.time
+    let time = new Date(utctime).toTimeString().substring(0,5);
+    $messages.append('<div class="message"><strong>' +
+                      data.user + '</strong>: ' + data.msg +
+                      '<span class="timestamp">' + time +
+                      '</span></div>'
+                    );
   });
 
   // Submit user form

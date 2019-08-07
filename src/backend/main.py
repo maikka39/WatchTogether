@@ -39,7 +39,7 @@ def send_message(sid, message):
     data = {
         "user": usernames.get(str(sid)),
         "msg": html.escape(message),
-        "time": datetime.now().strftime("%H:%M"),
+        "time": datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S UTC"),
     }
     sio.emit('new message', data, room=sio.rooms(sid)[0])
 

@@ -54,7 +54,6 @@ Find a bug or want to request a new feature? Please let me know by [Submitting a
 ## Todo
 
 Here's a list of things I'm planning to implement:
-* Convert time to client timezone
 * Remove jquery
 
 ## Contact
