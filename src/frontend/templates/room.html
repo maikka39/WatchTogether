@@ -1,10 +1,9 @@
 {% extends 'base.html' %}
 
-{% block title %}
-Room
-{% endblock %}
+{% block title %}Room: {{roomnum}}{% endblock %}
 
 {% block head %}
+<script type="text/javascript" src="{{ url_for('static', filename='js/lib/jquery.slim.min.js') }}"></script>
 <link rel="stylesheet" href="{{ url_for('static', filename='scss/compiled/room.css') }}">
 <script type="text/javascript" src="{{ url_for('static', filename='js/lib/socket.io.js') }}"></script>
 <script type="text/javascript" src="{{ url_for('static', filename='js/cookie.js') }}"></script>
