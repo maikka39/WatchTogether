@@ -21,6 +21,7 @@ WatchTogether currently only supports Youtube.
 
 ## Dependencies
 
+This software uses:
 * Eventlet
 * SocketIO
 * Flask
@@ -31,20 +32,16 @@ How to run this service yourself.
 
 #### Install dependencies:
 ```bash
-pip install eventlet
-pip install python-socketio
-pip install flask
-pip install html
-pip install libsass
+sudo apt install docker-io
 ```
 
 #### Run the Server
 ```bash
-python main.py
+bash ./run
 ```
 
 #### Access the Sever
-Access the server by going to localhost:8080
+Access the server by going to localhost:4000
 
 ## How it works
 
@@ -56,7 +53,7 @@ Find a bug or want to request a new feature? Please let me know by [Submitting a
 
 ## Contact
 
-Need a little help? Contact me at [maikka39@gmail.com](mailto:maikka39@gmail.com) and I'll try to help you sort it out.
+Need a little help? Contact me at [contact@maik.dev](mailto:maikka39@gmail.com) and I'll try to help you sort it out.
 
 ## Licensing
 
