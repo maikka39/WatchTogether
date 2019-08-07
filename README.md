@@ -24,6 +24,7 @@ WatchTogether currently only supports Youtube.
 * Eventlet
 * SocketIO
 * Flask
+* Libsass
 
 ## How to run
 How to run this service yourself.
@@ -34,6 +35,7 @@ pip install eventlet
 pip install python-socketio
 pip install flask
 pip install html
+pip install libsass
 ```
 
 #### Run the Server

@@ -2,11 +2,13 @@
 Created by: Maik de Kruif
 """
 
+import os
 from html import escape
 from pprint import pprint
 from time import gmtime, strftime
 
 import eventlet
+import sass
 import socketio
 from flask import Flask, render_template, url_for
 
@@ -129,6 +131,11 @@ def disconnect(sid):
 
 
 if __name__ == '__main__':
+    print("Compiling SCSS...")
+    path = os.getcwd() + "/static/scss"
+    sass.compile(dirname=(path, path + "/compiled"), output_style='compressed')
+    print("Done compiling SCSS!")
+
     # wrap Flask application with socketio's middleware
     app = socketio.Middleware(sio, app)
 
