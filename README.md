@@ -55,6 +55,7 @@ Find a bug or want to request a new feature? Please let me know by [Submitting a
 
 Here's a list of things I'm planning to implement:
 * Remove jquery
+* Add database instead of variables for sessions
 
 ## Contact
 
