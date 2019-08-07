@@ -58,6 +58,7 @@ Here's a list of things I'm planning to implement:
 * Use database instead of variables for sessions
 * Add toggle for dark theme
 * Redesign backend as I was stupid when I made this
+* Add popup if username is not set
 
 ## Contact
 
