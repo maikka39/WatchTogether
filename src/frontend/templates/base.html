@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
+
   <head>
     <meta charset="utf-8">
     <title>{% block title %}{% endblock %} - WatchTogether</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <script type="text/javascript" src={{ url_for('static', filename='js/lib/jquery.slim.min.js') }}></script>
-    <link rel="stylesheet" href={{ url_for('static', filename='css/normalize.css') }}>
-    <link rel="stylesheet" href={{ url_for('static', filename='css/main.css') }}>
+    <link rel="stylesheet" href={{ url_for('static', filename='scss/compiled/normalize.css') }}>
+    <link rel="stylesheet" href={{ url_for('static', filename='scss/compiled/main.css') }}>
     {% block head %}{% endblock %}
   </head>
+
   <body>
     <div class="nav">
       <!-- <div class="nav-item nav-item-logo"></div> -->
@@ -30,4 +32,5 @@
 
     {% block footerjs %}{% endblock %}
   </body>
+
 </html>
