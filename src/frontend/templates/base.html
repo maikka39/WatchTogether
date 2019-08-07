@@ -5,18 +5,18 @@
     <meta charset="utf-8">
     <title>{% block title %}{% endblock %} - WatchTogether</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href={{ url_for('static', filename='scss/compiled/normalize.css') }}>
-    <link rel="stylesheet" href={{ url_for('static', filename='scss/compiled/main.css') }}>
+    <link rel="stylesheet" href="{{ url_for('static', filename='scss/compiled/normalize.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='scss/compiled/main.css') }}">
     {% block head %}{% endblock %}
   </head>
 
   <body>
     <div class="nav">
-      <!-- <div class="nav-item nav-item-logo"></div> -->
-      <div class="nav-item nav-item-home"></div>
-      <!-- <div class="nav-item nav-item-about"></div> -->
-      <!-- <div class="nav-item nav-item-source"></div> -->
-      <!-- <div class="nav-item nav-item-donate"></div> -->
+      <div class="nav-item nav-item-logo">Logo</div>
+      <div class="nav-item nav-item-home">Home</div>
+      <div class="nav-item nav-item-about">About</div>
+      <div class="nav-item nav-item-source">Source</div>
+      <div class="nav-item nav-item-donate">Donate</div>
     </div>
 
     <div class="page">
