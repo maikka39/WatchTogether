@@ -5,15 +5,17 @@
 {% block head %}
 <script type="text/javascript" src="{{ url_for('static', filename='js/lib/jquery.slim.min.js') }}"></script>
 <link rel="stylesheet" href="{{ url_for('static', filename='scss/compiled/room.css') }}">
+<script type="text/javascript" src="{{ url_for('static', filename='js/cookie.js') }}"></script>
 <script type="text/javascript" src="{{ url_for('static', filename='js/lib/socket.io.js') }}"></script>
 <script type="text/javascript" src="{{ url_for('static', filename='js/cookie.js') }}"></script>
 
 <script type="text/javascript">
   const socket = io.connect();
   const roomnum = "{{roomnum}}";
+  const username = getCookie("username", "Unknown")
   var id = "M7lc1UVf-VE";
 
-  socket.emit('join room', roomnum)
+  socket.emit('join room', roomnum, username)
 
 </script>
 {% endblock %}
@@ -66,6 +68,7 @@
 {% block footerjs %}
 <script type="text/javascript" src="{{ url_for('static', filename='js/sync.js') }}"></script>
 <script type="text/javascript" src="{{ url_for('static', filename='js/chat.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/online.js') }}"></script>
 <script type="text/javascript" src="{{ url_for('static', filename='js/control.js') }}"></script>
 <script type="text/javascript" src="{{ url_for('static', filename='js/player.js') }}"></script>
 
