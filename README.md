@@ -2,7 +2,7 @@
 
 [View a live example](https://maikka39.com/portfolio/WatchTogether/)
 
-![WatchTogether Screenshot](https://raw.githubusercontent.com/maikka39/WatchTogether/master/static/img/WatchTogether.png)
+![WatchTogether Screenshot](https://raw.githubusercontent.com/maikka39/WatchTogether/master/src/frontend/static/img/WatchTogether.png)
 
 WatchTogether is an online service that lets you watch a video together with your friends without being in the same room!
 
