@@ -1,6 +1,6 @@
 # WatchTogether
 
-[View a live example](https://maikka39.com/portfolio/WatchTogether/)
+[View a live example](https://watchtogether.maik.dev/)
 
 ![WatchTogether Screenshot](https://raw.githubusercontent.com/maikka39/WatchTogether/master/src/frontend/static/img/WatchTogether.png)
 
