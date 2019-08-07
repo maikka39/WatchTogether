@@ -51,6 +51,12 @@ Coming Soon!
 
 Find a bug or want to request a new feature? Please let me know by [Submitting an issue!](https://github.com/maikka39/WatchTogether/issues)
 
+## Todo
+
+Here's a list of things I'm planning to implement:
+* Convert time to client timezone
+* Remove jquery
+
 ## Contact
 
 Need a little help? Contact me at [contact@maik.dev](mailto:maikka39@gmail.com) and I'll try to help you sort it out.
