@@ -57,6 +57,7 @@ Here's a list of things I'm planning to implement:
 * Remove jquery
 * Use database instead of variables for sessions
 * Add toggle for dark theme
+* Redesign backend as I was stupid when I made this
 
 ## Contact
 
