@@ -1,4 +1,5 @@
 import html
+from datetime import datetime
 
 import socketio
 
@@ -38,7 +39,7 @@ def send_message(sid, message):
     data = {
         "user": usernames.get(str(sid)),
         "msg": html.escape(message),
-        "time": strftime("%H:%M", gmtime()),
+        "time": datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S UTC"),
     }
     sio.emit('new message', data, room=sio.rooms(sid)[0])
 
