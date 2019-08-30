@@ -20,5 +20,7 @@ $(function() {
       '<div class="message"><strong>' + data.user + '</strong>: ' +
       data.msg + '<span class="timestamp">' + time + '</span></div>'
     );
+    let message_div = document.getElementById("messages");
+    message_div.scrollTop = message_div.scrollHeight
   });
 });
