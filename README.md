@@ -1,8 +1,8 @@
 # WatchTogether
 
-[View a live example](https://maikka39.com/portfolio/WatchTogether/)
+[View a live example](https://watchtogether.maik.dev/)
 
-![WatchTogether Screenshot](https://raw.githubusercontent.com/maikka39/WatchTogether/master/static/img/WatchTogether.png)
+![WatchTogether Screenshot](https://raw.githubusercontent.com/maikka39/WatchTogether/master/src/frontend/static/img/WatchTogether.png)
 
 WatchTogether is an online service that lets you watch a video together with your friends without being in the same room!
 
@@ -55,6 +55,10 @@ Find a bug or want to request a new feature? Please let me know by [Submitting a
 
 Here's a list of things I'm planning to implement:
 * Remove jquery
+* Use database instead of variables for sessions
+* Add toggle for dark theme
+* Redesign backend as I was stupid when I made this
+* Add popup if username is not set
 
 ## Contact
 

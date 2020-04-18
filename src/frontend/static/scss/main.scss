@@ -2,7 +2,7 @@
 
 body {
   display           : grid;
-  grid-template-rows: 1fr 15fr 1fr;
+  // grid-template-rows: 80px 15fr 1fr;
   min-height        : 100vh;
   font-family       : "Roboto", sans-serif;
   color             : #1c1c1c;
@@ -10,12 +10,50 @@ body {
 
 .nav {
   display              : grid;
-  /* grid-template-columns: 1fr 1fr 1fr 1fr 1fr 13fr 4fr; */
-  grid-template-columns: 1fr;
-  /* grid-template-rows: 1fr; */
+  grid-template-columns: 1fr 10fr 1fr 1fr 1fr 1fr;
+  grid-template-areas  : "logo ph home about source donate";
+  // grid-template-columns: 1fr;
+  grid-template-rows: 60px;
   grid-gap             : 1rem;
-}
+  position: relative;
 
-.nav-item {
-  background-color: #00ff29;
+  background: #41ff66;
+
+  border-style: solid;
+  border-color: #40ee62;
+  border-width: .4vw;
+
+  .nav-item {
+    // background-color: #00ff29;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: 800;
+
+    &:hover {
+      font-size: 1.2em;
+      cursor: pointer;
+    }
+  }
+
+  .nav-item-logo {
+    grid-area: logo;
+  }
+
+  .nav-item-home {
+    grid-area: home;
+  }
+
+  .nav-item-about {
+    grid-area: about;
+  }
+
+  .nav-item-source {
+    grid-area: source;
+  }
+
+  .nav-item-donate {
+    grid-area: donate;
+  }
 }

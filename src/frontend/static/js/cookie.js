@@ -5,7 +5,7 @@ function setCookie(cookiename, cookievalue, expirationdays) {
   document.cookie = cookiename + "=" + cookievalue + ";" + expires + ";path=/";
 }
 
-function getCookie(cookiename) {
+function getCookie(cookiename, value) {
   var cookie = cookiename + "=";
   var ca = document.cookie.split(';');
   for (var i = 0; i < ca.length; i++) {
@@ -17,7 +17,7 @@ function getCookie(cookiename) {
       return c.substring(cookie.length, c.length);
     }
   }
-  return null;
+  return value || null;
 }
 
 function checkCookie(cookiename) {

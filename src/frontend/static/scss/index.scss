@@ -1,0 +1,64 @@
+.content {
+  background: #fcfcfc;
+  width: 100%;
+
+  margin: 0;
+  padding: 0;
+
+  padding-top: 1px;
+  margin-top: -1px;
+
+  .header {
+    margin: 80px 0;
+
+    > .center {
+      padding: 50px;
+      background: #ececec;
+      width: 60vw;
+      margin: 50px auto;
+
+      > form {
+        > h1 {
+          margin-top: 0;
+          margin-bottom: 40px;
+        }
+
+        > input {
+          background: #f9f9f9;
+          border: none;
+          padding: 1.2vw;
+
+          &:focus {
+            outline: none;
+          }
+
+          &[name=roomtitle] {
+            width: calc(100% - 2 * 1.2vw);
+          }
+
+          &[type=submit] {
+            display: block;
+            margin-top: 40px;
+            width: 100%;
+            background: #41ff66;
+            border-color: #40ee62;
+            border-width: 0.4vw;
+            border-style: solid;
+            font-weight: 800;
+
+            &:hover {
+              background-color: #40ee62;
+              cursor: pointer;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .something {
+    height: 100vh;
+    background: #ececec;
+  }
+
+}
