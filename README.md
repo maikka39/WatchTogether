@@ -1,68 +1,75 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# WatchTogether
 
-## Available Scripts
+[View a live example](https://watchtogether.maik.dev/)
 
-In the project directory, you can run:
+![WatchTogether Screenshot](https://raw.githubusercontent.com/maikka39/WatchTogether/master/src/frontend/static/img/WatchTogether.png)
 
-### `npm start`
+WatchTogether is an online service that lets you watch a video together with your friends without being in the same room!
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+WatchTogether currently only supports Youtube.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+[![forthebadge](https://forthebadge.com/images/badges/built-by-developers.svg)](https://forthebadge.com)
+[![forthebadge](https://forthebadge.com/images/badges/designed-in-ms-paint.svg)](https://forthebadge.com)
 
-### `npm test`
+[![forthebadge](https://forthebadge.com/images/badges/made-with-javascript.svg)](https://forthebadge.com)
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+[![forthebadge](https://forthebadge.com/images/badges/uses-html.svg)](https://forthebadge.com)
+[![forthebadge](https://forthebadge.com/images/badges/uses-css.svg)](https://forthebadge.com)
 
-### `npm run build`
+[![Open Source Love](https://badges.frapsoft.com/os/v2/open-source.png?v=103)](https://github.com/ellerbrock/open-source-badges/) ![Node.js CI](https://github.com/maikka39/WatchTogether/workflows/Node.js%20CI/badge.svg?branch=beta) [![GitHub issues](https://img.shields.io/github/issues/maikka39/WatchTogether.svg "GitHub issues")](https://github.com/maikka39/WatchTogether/issues) [![GitHub stars](https://img.shields.io/github/stars/maikka39/WatchTogether.svg "GitHub stars")](https://github.com/maikka39/WatchTogether/stargazers) [![Github search hit counter](https://img.shields.io/github/search/maikka39/WatchTogether/hit.svg)](#)
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Dependencies
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+This software uses:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- React
+- Webpack
+- Bootstrap
 
-### `npm run eject`
+## How to run
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+How to run this service yourself.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### npm
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+#### Install dependencies:
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+```bash
+npm install
+```
 
-## Learn More
+#### Start development server
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```bash
+npm start
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+#### Access the Sever
 
-### Code Splitting
+Access the website by going to [localhost:3000](http://localhost:3000)
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+### Docker
 
-### Analyzing the Bundle Size
+Not yet available
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+## How it works
 
-### Making a Progressive Web App
+Please take a look at the [wiki](https://github.com/maikka39/WatchTogether/wiki).
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+## Issues
 
-### Advanced Configuration
+Find a bug or want to request a new feature? Please let me know by [Submitting an issue!](https://github.com/maikka39/WatchTogether/issues)
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+## Todo
 
-### Deployment
+Here's a list of things I'm planning to implement:
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+- The actual website
 
-### `npm run build` fails to minify
+## Contact
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+Need a little help? Open an [issue](https://github.com/maikka39/WatchTogether/issues) or contact me at [contact@maik.dev](mailto:maikka39@gmail.com) and I'll try to help you sort it out.
+
+## Licensing
+
+This software is not yet licensed... [Remind me to do this.](mailto:contact@maik.dev?subject=Add%20a%20licence%20to%20Watch-Together&body=Don't%20forget%20to%20add%20a%20licence%20to%20https://github.com/maikka39/WatchTogether%20!!!)
