@@ -1,19 +1,22 @@
 import React from "react";
 import { Router } from "react-router-dom";
+import { Container } from "react-bootstrap";
 import history from "./history";
 import Routes from "./Routes";
-import Navbar from "./Navbar";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.scss";
 
-export default function App(props) {
+export default function App() {
   return (
     <Router history={history}>
-      <div className="App container">
+      <Container id="App">
         <Navbar />
         <Routes appProps={{ history }} />
-      </div>
+        <Footer />
+      </Container>
     </Router>
   );
 }
