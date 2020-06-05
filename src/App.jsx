@@ -9,7 +9,7 @@ import Footer from "./components/Footer";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.scss";
 
-export default function App() {
+export default () => {
   return (
     <Router history={history}>
       <Container id="App">
