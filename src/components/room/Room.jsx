@@ -2,6 +2,7 @@ import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import Player from "./Player"
 import Chat from "./Chat"
+import Controls from "./Controls"
 import "./Room.scss";
 
 export default class Room extends React.Component {
@@ -24,7 +25,12 @@ export default class Room extends React.Component {
           </Col>
         </Row>
         <Row>
-          <h2>Other content</h2>
+          <Col lg={8}>
+            <Controls />
+          </Col>
+          <Col lg={4}>
+            <h2>Other</h2>
+          </Col>
         </Row>
       </Container>
     );
