@@ -1,6 +1,17 @@
 let messageCallback = () => {};
 
-setInterval(() => {
+// setInterval(() => {
+//   messageCallback({
+//     avatar: 'https://maik.dev/assets/images/logo.svg',
+//     alt: 'maik_dev',
+//     title: 'Maik',
+//     subtitle: 'Test message',
+//     date: new Date(),
+//     unread: 0,
+//   })
+// }, 1500);
+
+setTimeout(() => {
   messageCallback({
     avatar: 'https://maik.dev/assets/images/logo.svg',
     alt: 'maik_dev',
@@ -9,7 +20,15 @@ setInterval(() => {
     date: new Date(),
     unread: 0,
   })
-}, 1500);
+  messageCallback({
+    avatar: 'https://maik.dev/assets/images/logo.svg',
+    alt: 'maik_dev',
+    title: 'Maik',
+    subtitle: 'Test message',
+    date: new Date(),
+    unread: 0,
+  })
+}, 1000);
 
 
 export function sendMessage(message) {

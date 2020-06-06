@@ -3,6 +3,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import Player from "./Player"
 import Chat from "./Chat"
 import Controls from "./Controls"
+import Online from "./Online"
 import "./Room.scss";
 
 export default class Room extends React.Component {
@@ -29,7 +30,7 @@ export default class Room extends React.Component {
             <Controls />
           </Col>
           <Col lg={4}>
-            <h2>Other</h2>
+            <Online />
           </Col>
         </Row>
       </Container>
