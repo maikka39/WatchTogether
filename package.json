@@ -1,6 +1,7 @@
 {
   "name": "watch-together",
   "version": "0.1.0",
+  "description": "WatchTogether is an online service that lets you watch a video together with your friends without being in the same room!",
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.28",
