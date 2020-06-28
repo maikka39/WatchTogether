@@ -9,7 +9,11 @@ export default ({ messages, sendMessage }) => {
   const messagesEndRef = useRef(null)
 
   useEffect(() => {
-    messagesEndRef.current.scrollIntoView({ behavior: "smooth" })
+    messagesEndRef.current.parentElement.scrollTo({
+      left: 0,
+      top: messagesEndRef.current.parentElement.scrollHeight,
+      behavior: 'smooth',
+    });
   }, [messages]);
 
   return (
