@@ -11,7 +11,6 @@ import {
   faLink,
   faExchangeAlt
 } from "@fortawesome/free-solid-svg-icons";
-import "./Player.scss"
 
 let isPlaying = false;
 

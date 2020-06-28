@@ -1,39 +1,96 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Container, Row, Col } from "react-bootstrap";
-import Player from "./Player"
-import Chat from "./Chat"
-import Controls from "./Controls"
-import Online from "./Online"
+import io from "socket.io-client";
+import { getCookie } from "../../cookies"
+import { SEVER_ENDPOINT } from "../../config"
+import Player from "./Player/Player"
+import Chat from "./Chat/Chat"
+import Controls from "./Controls/Controls"
+import Online from "./Online/Online"
 import "./Room.scss";
 
-export default class Room extends React.Component {
-  componentDidMount() {
-    document.querySelectorAll(".chat-view").forEach(el => {
-      el.style.maxHeight = document.querySelector(".react-player").clientHeight + "px";
-    });
-  }
+let socket;
 
-  render() {
-    return (
-      <Container id="Room">
-        <h1>Room</h1>
-        <Row className="mb-5">
-          <Col lg={8}>
-            <Player />
-          </Col>
-          <Col lg={4}>
-            <Chat />
-          </Col>
-        </Row>
-        <Row>
-          <Col lg={8}>
-            <Controls />
-          </Col>
-          <Col lg={4}>
-            <Online />
-          </Col>
-        </Row>
-      </Container>
-    );
-  }
+export default (props) => {
+  const [messages, setMessages] = useState([]);
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    let roomid = props.match.params.roomid;
+    let name = getCookie("username");
+
+    socket = io(SEVER_ENDPOINT);
+
+    socket.emit("join", { room: roomid, name }, (error) => {
+      if (error) {
+        alert(error);
+        return;
+      }
+      console.log("Joined");
+
+    })
+
+    return () => {
+      socket.emit('disconnect');
+      socket.off();
+    }
+  }, [props.match.params]);
+
+  useEffect(() => {
+    console.log("effect");
+    socket.on("message", (message) => {
+      setMessages((messages) => [...messages, {
+        avatar: 'https://maik.dev/assets/images/logo.svg',
+        alt: 'Avatar',
+        title: message.user,
+        subtitle: message.text,
+        date: new Date(),
+        unread: 0,
+      }])
+    });
+
+    socket.on("newUser", ({ users }) => {
+      setUsers(users);
+    });
+  }, []);
+
+  useEffect(() => {
+    const fitChat = () => {
+      document.querySelectorAll(".chat-view").forEach(el => {
+        el.style.maxHeight = document.querySelector(".react-player").clientHeight + "px";
+      });
+    };
+    fitChat()
+    window.onresize = fitChat;
+  });
+
+  const sendMessage = (message, callback) => {
+    if (message === "") return;
+
+    socket.emit("sendMessage", { text: message }, () => {
+      callback();
+    })
+  };
+
+  return (
+    <Container id="Room">
+      <h1>Room</h1>
+      <Row className="mb-5">
+        <Col lg={8}>
+          <Player />
+        </Col>
+        <Col lg={4}>
+          <Chat messages={messages} sendMessage={sendMessage} />
+        </Col>
+      </Row>
+      <Row>
+        <Col lg={8}>
+          <Controls />
+        </Col>
+        <Col lg={4}>
+          <Online users={users} />
+        </Col>
+      </Row>
+    </Container>
+  );
 }
