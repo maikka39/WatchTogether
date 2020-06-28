@@ -16,6 +16,8 @@ export default (props) => {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
+    if (socket) return;
+
     let roomid = props.match.params.roomid;
     let name = getCookie("username");
 
@@ -49,7 +51,7 @@ export default (props) => {
     socket.on("newUser", ({ users }) => {
       setUsers(users);
     });
-  }, []);
+  }, [props.match.params]);
 
   useEffect(() => {
     const fitChat = () => {
