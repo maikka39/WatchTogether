@@ -26,8 +26,6 @@ export default (props) => {
         alert(error);
         return;
       }
-      console.log("Joined");
-
     })
 
     return () => {
@@ -37,13 +35,12 @@ export default (props) => {
   }, [props.match.params]);
 
   useEffect(() => {
-    console.log("effect");
-    socket.on("message", (message) => {
+    socket.on("message", ({ user, text }) => {
       setMessages((messages) => [...messages, {
         avatar: 'https://maik.dev/assets/images/logo.svg',
         alt: 'Avatar',
-        title: message.user,
-        subtitle: message.text,
+        title: user,
+        subtitle: text,
         date: new Date(),
         unread: 0,
       }])
@@ -67,7 +64,7 @@ export default (props) => {
   const sendMessage = (message, callback) => {
     if (message === "") return;
 
-    socket.emit("sendMessage", { text: message }, () => {
+    socket.emit("message", { text: message }, () => {
       callback();
     })
   };
