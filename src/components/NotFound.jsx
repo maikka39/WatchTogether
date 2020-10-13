@@ -7,4 +7,4 @@ export default () => {
       <h3 className="mt-5 text-center">Sorry, page not found!</h3>
     </Container>
   );
-}
+};

@@ -1,8 +1,8 @@
 import React from "react";
 import { Form, FormLabel, FormControl, FormGroup, InputGroup, Button } from "react-bootstrap";
 import { uniqueNamesGenerator, adjectives, colors, animals } from 'unique-names-generator';
-import history from "../../history"
-import { getCookie, setCookie } from "../../cookies"
+import history from "../../utils/history"
+import { getCookie, setCookie } from "../../utils/cookies"
 
 import "./Home.scss";
 

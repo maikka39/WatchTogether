@@ -1,6 +1,6 @@
 import React from "react";
 import { Container, ResponsiveEmbed } from "react-bootstrap";
-import ReactPlayer from 'react-player'
+import ReactPlayer from "react-player";
 
 export default () => {
   return (
@@ -8,10 +8,10 @@ export default () => {
       <h2>Player</h2>
       <ResponsiveEmbed aspectRatio="16by9">
         <ReactPlayer
-          className='react-player'
-          url='https://www.youtube.com/watch?v=dQw4w9WgXcQ'
-          width='100%'
-          height='100%'
+          className="react-player"
+          url="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+          width="100%"
+          height="100%"
           controls
           playing
           light
@@ -19,4 +19,4 @@ export default () => {
       </ResponsiveEmbed>
     </Container>
   );
-}
+};

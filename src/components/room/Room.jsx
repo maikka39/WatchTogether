@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import io from "socket.io-client";
-import { getCookie } from "../../cookies"
-import { SEVER_ENDPOINT } from "../../config"
-import Player from "./Player/Player"
-import Chat from "./Chat/Chat"
-import Controls from "./Controls/Controls"
-import Online from "./Online/Online"
+import { getCookie } from "../../utils/cookies";
+import { sanitize } from "../../utils/sanitize";
+import { SEVER_ENDPOINT } from "../../config";
+import Player from "./Player/Player";
+import Chat from "./Chat/Chat";
+import Controls from "./Controls/Controls";
+import Online from "./Online/Online";
 import "./Room.scss";
 
 let socket;
@@ -28,24 +29,27 @@ export default (props) => {
         alert(error);
         return;
       }
-    })
+    });
 
     return () => {
-      socket.emit('disconnect');
+      socket.emit("disconnect");
       socket.off();
-    }
+    };
   }, [props.match.params]);
 
   useEffect(() => {
     socket.on("message", ({ user, text }) => {
-      setMessages((messages) => [...messages, {
-        avatar: 'https://maik.dev/assets/images/logo.svg',
-        alt: 'Avatar',
-        title: user,
-        subtitle: text,
-        date: new Date(),
-        unread: 0,
-      }])
+      setMessages((messages) => [
+        ...messages,
+        {
+          avatar: "https://maik.dev/assets/images/logo.svg",
+          alt: "Avatar",
+          title: sanitize(user),
+          subtitle: sanitize(text),
+          date: new Date(),
+          unread: 0,
+        },
+      ]);
     });
 
     socket.on("newUser", ({ users }) => {
@@ -55,20 +59,21 @@ export default (props) => {
 
   useEffect(() => {
     const fitChat = () => {
-      document.querySelectorAll(".chat-view").forEach(el => {
-        el.style.maxHeight = document.querySelector(".react-player").clientHeight + "px";
+      document.querySelectorAll(".chat-view").forEach((el) => {
+        el.style.maxHeight =
+          document.querySelector(".react-player").clientHeight + "px";
       });
     };
-    fitChat()
+    fitChat();
     window.onresize = fitChat;
   });
 
   const sendMessage = (message, callback) => {
     if (message === "") return;
 
-    socket.emit("message", { text: message }, () => {
+    socket.emit("message", { text: sanitize(message) }, () => {
       callback();
-    })
+    });
   };
 
   return (
@@ -92,4 +97,4 @@ export default (props) => {
       </Row>
     </Container>
   );
-}
+};

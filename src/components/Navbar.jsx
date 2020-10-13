@@ -3,9 +3,9 @@ import { Navbar, OverlayTrigger, Popover } from "react-bootstrap";
 import { Link, useLocation, matchPath } from "react-router-dom";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faHeart,
-} from "@fortawesome/free-solid-svg-icons";
+import { faHeart } from "@fortawesome/free-solid-svg-icons";
+
+import { sanitize } from "../utils/sanitize";
 
 export default () => {
   return (
@@ -21,17 +21,16 @@ export default () => {
       </Navbar.Collapse>
     </Navbar>
   );
-}
+};
 
 function RoomText() {
   const match = matchPath(useLocation().pathname, {
     path: "/@:roomid",
     exact: true,
-    strict: false
+    strict: false,
   });
 
   return match ? (
-
     <OverlayTrigger
       trigger="focus"
       placement="bottom"
@@ -46,9 +45,30 @@ function RoomText() {
       }
     >
       <span>
-        Room: <Link onClick={() => { navigator.clipboard.writeText(window.location.href); }} to="#">{match.params.roomid}</Link>
+        Room:{" "}
+        <Link
+          onClick={() => {
+            navigator.clipboard.writeText(window.location.href);
+          }}
+          to="#"
+        >
+          {sanitize(match.params.roomid)}
+        </Link>
       </span>
     </OverlayTrigger>
+  ) : (
     // eslint-disable-next-line react/jsx-no-target-blank
-  ) : (<span>Made with <FontAwesomeIcon icon={faHeart} color="#FF0001" /> by <a className="font-weight-bold" href="https://maik.dev/" target="_blank" rel="noopener">Maik de Kruif</a></span>)
+    <span>
+      Made with <FontAwesomeIcon icon={faHeart} color="#FF0001" /> by{" "}
+      <a
+        className="font-weight-bold"
+        href="https://maik.dev/"
+        // eslint-disable-next-line react/jsx-no-target-blank
+        target="_blank"
+        rel="noopener"
+      >
+        Maik de Kruif
+      </a>
+    </span>
+  );
 }

@@ -26,7 +26,9 @@ export default ({ sendMessage }) => {
               id="inlineFormInput"
               value={message}
               onChange={(event) => setMessage(event.target.value)}
-              onKeyPress={(event) => event.key === "Enter" ? handleSubmit(event) : null}
+              onKeyPress={(event) =>
+                event.key === "Enter" ? handleSubmit(event) : null
+              }
               placeholder="Message"
             />
           </Col>
@@ -39,4 +41,4 @@ export default ({ sendMessage }) => {
       </Form>
     </Container>
   );
-}
+};

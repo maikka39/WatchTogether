@@ -1,7 +1,7 @@
 import React from "react";
 import { Router } from "react-router-dom";
 import { Container } from "react-bootstrap";
-import history from "./history";
+import history from "./utils/history";
 import Routes from "./Routes";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
@@ -19,4 +19,4 @@ export default () => {
       </Container>
     </Router>
   );
-}
+};

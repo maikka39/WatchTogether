@@ -1,18 +1,18 @@
 import React, { useEffect, useRef } from "react";
 import { Container } from "react-bootstrap";
 import Message from "./Message";
-import Input from "./Input"
+import Input from "./Input";
 
-import "./Chat.scss"
+import "./Chat.scss";
 
 export default ({ messages, sendMessage }) => {
-  const messagesEndRef = useRef(null)
+  const messagesEndRef = useRef(null);
 
   useEffect(() => {
     messagesEndRef.current.parentElement.scrollTo({
       left: 0,
       top: messagesEndRef.current.parentElement.scrollHeight,
-      behavior: 'smooth',
+      behavior: "smooth",
     });
   }, [messages]);
 
@@ -28,12 +28,11 @@ export default ({ messages, sendMessage }) => {
               text={msg.subtitle}
               date={msg.date}
             />
-          )
-          )}
+          ))}
           <div ref={messagesEndRef} />
         </Container>
         <Input sendMessage={sendMessage} />
       </Container>
     </Container>
   );
-}
+};
