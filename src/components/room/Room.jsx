@@ -52,7 +52,7 @@ export default (props) => {
       ]);
     });
 
-    socket.on("newUser", ({ users }) => {
+    socket.on("usersUpdated", ({ users }) => {
       setUsers(users);
     });
   }, [props.match.params]);
