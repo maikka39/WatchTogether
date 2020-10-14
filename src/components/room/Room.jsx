@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import io from "socket.io-client";
-import { getCookie } from "../../utils/cookies";
+import { getCookie, setCookie } from "../../utils/cookies";
 import { sanitize } from "../../utils/sanitize";
 import { SEVER_ENDPOINT } from "../../config";
 import Player from "./Player/Player";
 import Chat from "./Chat/Chat";
 import Controls from "./Controls/Controls";
 import Online from "./Online/Online";
+import history from "../../utils/history";
 import "./Room.scss";
 
 let socket;
@@ -20,7 +21,10 @@ export default (props) => {
     if (socket) return;
 
     let roomid = props.match.params.roomid;
+    setCookie("roomid", roomid, 365);
     let name = getCookie("username");
+
+    if (name === "") history.push("/");
 
     socket = io(SEVER_ENDPOINT);
 
