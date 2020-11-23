@@ -1,34 +1,23 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Container, Row, Col } from "react-bootstrap";
-import io from "socket.io-client";
 import { getCookie, setCookie } from "../../utils/cookies";
-import { sanitize } from "../../utils/sanitize";
-import { SEVER_ENDPOINT } from "../../config";
 import Player from "./Player/Player";
 import Chat from "./Chat/Chat";
 import Controls from "./Controls/Controls";
 import Online from "./Online/Online";
 import history from "../../utils/history";
+import { socket } from "../../utils/socket";
 import "./Room.scss";
 
-let socket;
-
 export default (props) => {
-  const [messages, setMessages] = useState([]);
-  const [users, setUsers] = useState([]);
-
   useEffect(() => {
-    if (socket) return;
-
     let roomid = props.match.params.roomid;
     setCookie("roomid", roomid, 365);
     let name = getCookie("username");
 
     if (name === "") history.push("/");
 
-    socket = io(SEVER_ENDPOINT);
-
-    socket.emit("join", { room: roomid, name }, (error) => {
+    socket.emit("enterRoom", { room: roomid, name }, (error) => {
       if (error) {
         alert(error);
         return;
@@ -42,26 +31,6 @@ export default (props) => {
   }, [props.match.params]);
 
   useEffect(() => {
-    socket.on("message", ({ user, text }) => {
-      setMessages((messages) => [
-        ...messages,
-        {
-          avatar: "https://maik.dev/assets/images/logo.svg",
-          alt: "Avatar",
-          title: sanitize(user),
-          subtitle: sanitize(text),
-          date: new Date(),
-          unread: 0,
-        },
-      ]);
-    });
-
-    socket.on("usersUpdated", ({ users }) => {
-      setUsers(users);
-    });
-  }, [props.match.params]);
-
-  useEffect(() => {
     const fitChat = () => {
       document.querySelectorAll(".chat-view").forEach((el) => {
         el.style.maxHeight =
@@ -72,14 +41,6 @@ export default (props) => {
     window.onresize = fitChat;
   });
 
-  const sendMessage = (message, callback) => {
-    if (message === "") return;
-
-    socket.emit("message", { text: sanitize(message) }, () => {
-      callback();
-    });
-  };
-
   return (
     <Container id="Room">
       <h1>Room</h1>
@@ -88,7 +49,7 @@ export default (props) => {
           <Player />
         </Col>
         <Col lg={4}>
-          <Chat messages={messages} sendMessage={sendMessage} />
+          <Chat />
         </Col>
       </Row>
       <Row>
@@ -96,7 +57,7 @@ export default (props) => {
           <Controls />
         </Col>
         <Col lg={4}>
-          <Online users={users} />
+          <Online />
         </Col>
       </Row>
     </Container>

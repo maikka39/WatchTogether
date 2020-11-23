@@ -1,12 +1,32 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Container } from "react-bootstrap";
 import Message from "./Message";
 import Input from "./Input";
+import { socket } from "../../../utils/socket";
+import { sanitize } from "../../../utils/sanitize";
 
 import "./Chat.scss";
 
-export default ({ messages, sendMessage }) => {
+export default (props) => {
+  const [messages, setMessages] = useState([]);
+
   const messagesEndRef = useRef(null);
+
+  useEffect(() => {
+    socket.on("message", ({ user, text }) => {
+      setMessages((messages) => [
+        ...messages,
+        {
+          avatar: "https://maik.dev/assets/images/logo.svg",
+          alt: "Avatar",
+          title: sanitize(user),
+          subtitle: sanitize(text),
+          date: new Date(),
+          unread: 0,
+        },
+      ]);
+    });
+  }, []);
 
   useEffect(() => {
     messagesEndRef.current.parentElement.scrollTo({
@@ -31,7 +51,7 @@ export default ({ messages, sendMessage }) => {
           ))}
           <div ref={messagesEndRef} />
         </Container>
-        <Input sendMessage={sendMessage} />
+        <Input />
       </Container>
     </Container>
   );

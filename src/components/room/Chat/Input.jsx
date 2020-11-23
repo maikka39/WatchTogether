@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { Container, Form, Col, Button } from "react-bootstrap";
+import { socket } from "../../../utils/socket";
+import { sanitize } from "../../../utils/sanitize";
 
-export default ({ sendMessage }) => {
+export default () => {
   const [message, setMessage] = useState("");
 
   const handleSubmit = (event) => {
@@ -12,6 +14,14 @@ export default ({ sendMessage }) => {
         setMessage("");
       });
     }
+  };
+
+  const sendMessage = (message, callback) => {
+    if (message === "") return;
+
+    socket.emit("message", { text: sanitize(message) }, () => {
+      callback();
+    });
   };
 
   return (
