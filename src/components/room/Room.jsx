@@ -32,14 +32,16 @@ export default (props) => {
 
   useEffect(() => {
     const fitChat = () => {
-      document.querySelectorAll(".chat-view").forEach((el) => {
-        el.style.maxHeight =
-          document.querySelector(".react-player").clientHeight + "px";
-      });
+      let playerHeight = document.querySelector(".react-player")?.clientHeight;
+      let chatViewStyle = document.querySelector(".chat-view")?.style;
+
+      if (chatViewStyle === undefined || playerHeight === undefined) return;
+
+      chatViewStyle.maxHeight = `${playerHeight}px`;
     };
     fitChat();
-    window.onresize = fitChat;
-  });
+    window.addEventListener('resize', fitChat)
+  }, []);
 
   return (
     <Container id="Room">
