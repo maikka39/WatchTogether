@@ -7,7 +7,7 @@ import { sanitize } from "../../../utils/sanitize";
 
 import "./Chat.scss";
 
-export default (props) => {
+export default () => {
   const [messages, setMessages] = useState([]);
 
   const messagesEndRef = useRef(null);
