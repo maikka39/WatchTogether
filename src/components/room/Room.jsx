@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { getCookie, setCookie } from "../../utils/cookies";
 import Player from "./Player/Player";
@@ -10,6 +10,21 @@ import { socket } from "../../utils/socket";
 import "./Room.scss";
 
 export default (props) => {
+  const [url, setUrl] = useState("");
+  const [pip] = useState(false);
+  const [playing, setPlaying] = useState(false);
+  const [controls] = useState(true);
+  const [light] = useState(false);
+  const [volume] = useState(0.8);
+  const [muted] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const [loaded, setLoaded] = useState(0);
+  const [duration, setDuration] = useState(0);
+  const [playbackRate] = useState(1.0);
+  const [loop] = useState(false);
+
+  const playerRef = useRef(null);
+
   useEffect(() => {
     let roomid = props.match.params.roomid;
     setCookie("roomid", roomid, 365);
@@ -22,6 +37,28 @@ export default (props) => {
         alert(error);
         return;
       }
+    });
+
+    socket.on("play", ({ progress }) => {
+      setPlaying(true);
+      playerRef.current.seekTo(progress);
+    });
+
+    socket.on("pause", ({ progress }) => {
+      setPlaying(false);
+      playerRef.current.seekTo(progress);
+    });
+
+    socket.on("changeVideo", ({ url }) => {
+      setUrl(url);
+      setProgress(0);
+      setLoaded(0);
+    });
+
+    socket.on("sync", ({ url, progress, playing }) => {
+      setUrl(url);
+      playerRef.current.seekTo(progress);
+      setPlaying(playing);
     });
 
     return () => {
@@ -40,7 +77,7 @@ export default (props) => {
       chatViewStyle.maxHeight = `${playerHeight}px`;
     };
     fitChat();
-    window.addEventListener('resize', fitChat)
+    window.addEventListener("resize", fitChat);
   }, []);
 
   return (
@@ -48,7 +85,24 @@ export default (props) => {
       <h1>Room</h1>
       <Row className="mb-5">
         <Col lg={8}>
-          <Player />
+          <Player
+            playerRef={playerRef}
+            url={url}
+            pip={pip}
+            playing={playing}
+            controls={controls}
+            light={light}
+            volume={volume}
+            muted={muted}
+            progress={progress}
+            loaded={loaded}
+            duration={duration}
+            playbackRate={playbackRate}
+            loop={loop}
+            setDuration={setDuration}
+            setProgress={setProgress}
+            setLoaded={setLoaded}
+          />
         </Col>
         <Col lg={4}>
           <Chat />
@@ -56,7 +110,7 @@ export default (props) => {
       </Row>
       <Row>
         <Col lg={8}>
-          <Controls />
+          <Controls playing={playing} url={url} progress={progress} />
         </Col>
         <Col lg={4}>
           <Online />

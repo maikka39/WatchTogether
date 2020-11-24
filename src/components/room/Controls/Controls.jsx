@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Container,
   ButtonToolbar,
@@ -18,33 +18,60 @@ import {
   faLink,
   faExchangeAlt,
 } from "@fortawesome/free-solid-svg-icons";
+import { socket } from "../../../utils/socket";
 
-let isPlaying = false;
+export default ({ playing, url, progress }) => {
+  const [changeVideoUrl, setchangeVideoUrl] = useState("");
 
-export default () => {
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    if (changeVideoUrl) {
+      changeVideo(changeVideoUrl, () => {
+        setchangeVideoUrl("");
+      });
+    }
+  };
+
+  const changeVideo = (changeVideoUrl, callback) => {
+    if (changeVideoUrl === "") return;
+
+    socket.emit("changeVideo", { url: changeVideoUrl }, () => {
+      callback();
+    });
+  };
+
   return (
     <Container id="Controls">
       <h2>Controls</h2>
       <ButtonToolbar>
         <ButtonGroup className="mr-2">
-          <Button>
+          <Button onClick={() => socket.emit("play", { progress })}>
             <FontAwesomeIcon icon={faPlay} /> Play
           </Button>
-          <Button>
+          <Button onClick={() => socket.emit("pause", { progress })}>
             <FontAwesomeIcon icon={faPause} /> Pause
           </Button>
-          <Button>
-            <FontAwesomeIcon icon={isPlaying ? faToggleOn : faToggleOff} />{" "}
-            Toggle
+          <Button onClick={() => socket.emit(playing ? "pause" : "play", { progress })}>
+            <FontAwesomeIcon icon={playing ? faToggleOn : faToggleOff} /> Toggle
           </Button>
         </ButtonGroup>
         <ButtonGroup className="mr-2">
-          <Button>
+          <Button
+            onClick={() => socket.emit("sync", { url, progress, playing })}
+          >
             <FontAwesomeIcon icon={faSync} /> Sync
           </Button>
         </ButtonGroup>
         <ButtonGroup className="mr-2">
-          <Button>
+          <Button
+            onClick={() =>
+              changeVideo(
+                "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+                () => {}
+              )
+            }
+          >
             <FontAwesomeIcon icon={faMehRollingEyes} /> Rick-roll
           </Button>
         </ButtonGroup>
@@ -56,10 +83,18 @@ export default () => {
               <FontAwesomeIcon icon={faLink} />
             </InputGroup.Text>
           </InputGroup.Prepend>
-          <FormControl type="text" placeholder="Video URL" />
+          <FormControl
+            type="text"
+            placeholder="Video URL"
+            value={changeVideoUrl}
+            onChange={(event) => setchangeVideoUrl(event.target.value)}
+            onKeyPress={(event) =>
+              event.key === "Enter" ? handleSubmit(event) : null
+            }
+          />
         </InputGroup>
         <ButtonGroup className="mr-2">
-          <Button>
+          <Button type="submit" onClick={(event) => handleSubmit(event)}>
             <FontAwesomeIcon icon={faExchangeAlt} /> Change video
           </Button>
         </ButtonGroup>
