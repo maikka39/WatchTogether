@@ -18,7 +18,10 @@ export default () => {
 
   return (
     <Container id="Online">
-      <h2>Online</h2>
+      <div className="d-flex justify-content-between align-items-center">
+        <h2>Online</h2>
+        <span>({users.length})</span>
+      </div>
       <ListGroup className="online-list">
         {users.map((usr, idx) => (
           <ListGroup.Item key={idx}>
