@@ -3,15 +3,8 @@ import { SEVER_ENDPOINT } from "../config";
 
 export let socket;
 
-if (socket == null) {
+if (socket === undefined) {
   socket = io(SEVER_ENDPOINT);
-
-  socket.emit("join", {}, (error) => {
-    if (error) {
-      alert(error);
-      return;
-    }
-  });
 }
 
 

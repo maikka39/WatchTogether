@@ -32,7 +32,7 @@ export default (props) => {
 
     if (name === "") history.push("/");
 
-    socket.emit("enterRoom", { room: roomid, name }, (error) => {
+    socket.emit("join", { room: roomid, name }, (error) => {
       if (error) {
         alert(error);
         return;
