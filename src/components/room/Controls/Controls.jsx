@@ -18,7 +18,7 @@ import {
   faLink,
   faExchangeAlt,
 } from "@fortawesome/free-solid-svg-icons";
-import { socket } from "../../../utils/socket";
+import { control } from "../../../utils/control";
 
 export default ({ playing, url, progress }) => {
   const [changeVideoUrl, setchangeVideoUrl] = useState("");
@@ -36,9 +36,7 @@ export default ({ playing, url, progress }) => {
   const changeVideo = (videoUrl, callback) => {
     if (videoUrl === "") return;
 
-    socket.emit("changeVideo", { url: videoUrl }, () => {
-      callback();
-    });
+    control.changeVideo(videoUrl, callback)
   };
 
   return (
@@ -46,19 +44,19 @@ export default ({ playing, url, progress }) => {
       <h2>Controls</h2>
       <ButtonToolbar>
         <ButtonGroup className="mr-2">
-          <Button onClick={() => socket.emit("play", { progress })}>
+          <Button onClick={() => control.play(progress)}>
             <FontAwesomeIcon icon={faPlay} /> Play
           </Button>
-          <Button onClick={() => socket.emit("pause", { progress })}>
+          <Button onClick={() => control.pause(progress)}>
             <FontAwesomeIcon icon={faPause} /> Pause
           </Button>
-          <Button onClick={() => socket.emit(playing ? "pause" : "play", { progress })}>
+          <Button onClick={() => playing ? control.pause(progress) : control.play(progress)}>
             <FontAwesomeIcon icon={playing ? faToggleOn : faToggleOff} /> Toggle
           </Button>
         </ButtonGroup>
         <ButtonGroup className="mr-2">
           <Button
-            onClick={() => socket.emit("sync", { url, progress, playing })}
+            onClick={() => control.sync(url, progress, playing)}
           >
             <FontAwesomeIcon icon={faSync} /> Sync
           </Button>

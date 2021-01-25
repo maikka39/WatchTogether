@@ -2,7 +2,7 @@ import React, { } from "react";
 import { Container, ResponsiveEmbed } from "react-bootstrap";
 import ReactPlayer from "react-player";
 import "./Player.scss";
-import { socket } from "../../../utils/socket"
+import { control } from "../../../utils/control"
 
 export default ({
   playerRef,
@@ -38,16 +38,16 @@ export default ({
           playbackRate={playbackRate}
           volume={volume}
           muted={muted}
-          onReady={() => socket.emit("clientOnReady")}
-          onStart={() => socket.emit("clientOnStart", {})}
-          onPlay={() => socket.emit("clientOnPlay", { progress })}
+          onReady={() => console.log("clientOnReady")}
+          onStart={() => console.log("clientOnStart", {})}
+          onPlay={() => control.play(progress)}
           onEnablePIP={() => console.log("onEnablePIP")}
           onDisablePIP={() => console.log("onDisablePIP")}
-          onPause={() => socket.emit("clientOnPause", { progress })}
-          onBuffer={() => socket.emit("clientBuffering", { progress })}
-          onSeek={(e) => socket.emit("clientOnSeek", { progress, e })}
-          onEnded={() => socket.emit("clientOnEnded", { progress })}
-          onError={(e) => socket.emit("clientOnError", { e })}
+          onPause={() => control.pause(progress)}
+          onBuffer={() => console.log("clientBuffering", { progress })}
+          // onSeek={(_) => control.sync(url, progress, playing)}
+          onEnded={() => console.log("clientOnEnded", { progress })}
+          onError={(e) => console.log("clientOnError", { e })}
           onProgress={(e) => {
             setProgress(e.played);
             setLoaded(e.loaded);

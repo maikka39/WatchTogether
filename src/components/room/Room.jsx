@@ -8,6 +8,7 @@ import Online from "./Online/Online";
 import history from "../../utils/history";
 import { socket } from "../../utils/socket";
 import "./Room.scss";
+import { control } from "../../utils/control";
 
 export default (props) => {
   const [url, setUrl] = useState("");
@@ -32,12 +33,10 @@ export default (props) => {
 
     if (name === "") history.push("/");
 
-    socket.emit("join", { room: roomid, name }, (error) => {
-      if (error) {
-        alert(error);
-        return;
-      }
-    });
+    control.join(roomid, name)
+    socket.on('connect', () => {
+      control.join(roomid, name)
+    })
 
     socket.on("play", ({ progress }) => {
       setPlaying(true);
