@@ -16,10 +16,10 @@ export default () => {
     }
   };
 
-  const sendMessage = (message, callback) => {
-    if (message === "") return;
+  const sendMessage = (text, callback) => {
+    if (text === "") return;
 
-    socket.emit("message", { text: sanitize(message) }, () => {
+    socket.emit("message", { text: sanitize(text) }, () => {
       callback();
     });
   };
