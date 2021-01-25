@@ -33,10 +33,10 @@ export default ({ playing, url, progress }) => {
     }
   };
 
-  const changeVideo = (changeVideoUrl, callback) => {
-    if (changeVideoUrl === "") return;
+  const changeVideo = (videoUrl, callback) => {
+    if (videoUrl === "") return;
 
-    socket.emit("changeVideo", { url: changeVideoUrl }, () => {
+    socket.emit("changeVideo", { url: videoUrl }, () => {
       callback();
     });
   };
